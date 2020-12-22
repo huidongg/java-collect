@@ -32,7 +32,7 @@ public class MyStack<T> {
      */
     public void push(T element) {
         lock.lock();
-        log.info("压入元素:" + element);
+        log.info("压入元素:" + element + ",标记:" + mark);
         elements[mark] = element;
         mark++;
         spare--;
@@ -48,16 +48,17 @@ public class MyStack<T> {
      */
     public T pop() {
         lock.lock();
-        log.info("弹出元素");
-        if (mark - 1 < 0) {
-            throw new RuntimeException("stack is null");
+        Object element;
+        while (mark - 1 < 0) {
+            return null;
         }
-        Object element = elements[mark - 1];
+        element = elements[mark - 1];
+        log.info("弹出元素:" + element);
         // 清空元素
         mark--;
         spare++;
         // 数组需要压缩一个step
-        if (spare == step) {
+        if (spare > step * 2) {
             elements = Arrays.copyOf(elements, elements.length - step);
             spare-=10;
             log.info("压缩元素数组, 空余:" + spare + ",标记位:" + mark);
