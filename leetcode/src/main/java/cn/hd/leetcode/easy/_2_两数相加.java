@@ -42,7 +42,7 @@ public class _2_两数相加 {
     private ListNode build(int x) {
         ListNode node1 = new ListNode(x % 10);
         int y = x;
-        int y = y / 10;
+        y = y / 10;
         ListNode node2 = new ListNode(y % 10);
         node1.next = node2;
         y = y / 10;
