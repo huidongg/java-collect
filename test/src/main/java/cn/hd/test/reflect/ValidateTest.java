@@ -1,13 +1,48 @@
 package cn.hd.test.reflect;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ValidateTest {
     public static void main(String[] args) {
-        Valid valid = new Valid();
-        valid.setAge(26);
-        valid.setName(null);
-        validNoNull(valid);
+        Valid valid1 = new Valid();
+        valid1.setName("张老三");
+
+        Valid valid2 = new Valid();
+        valid2.setName("张老三");
+
+        System.out.println(isEquals(valid1, valid2));
+    }
+
+    private static Boolean isEquals(Object obj1, Object obj2) {
+        Method[] methods = obj1.getClass().getDeclaredMethods();
+        for(Method method : methods) {
+            if (method.getName().startsWith("get")) {
+                try {
+                    Object o1 = method.invoke(obj1);
+                    Object o2 = method.invoke(obj2);
+                    if (o1 == null) {
+                        if (o2 == null) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        if (!o1.equals(o2)) {
+                            return false;
+                        }
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                    return false;
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private static void validNoNull(Object obj) {
