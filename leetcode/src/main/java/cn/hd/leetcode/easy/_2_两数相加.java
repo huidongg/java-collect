@@ -1,6 +1,8 @@
 package cn.hd.leetcode.easy;
 
-import java.util.LinkedList;
+import com.alibaba.fastjson.JSON;
+
+import java.math.BigInteger;
 
 /**
  * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
@@ -21,42 +23,74 @@ import java.util.LinkedList;
  */
 public class _2_两数相加 {
 
-    private ListNode node1 = null;
-    private ListNode node2 = null;
-    
+    /**
+     * TODO BigInteger 最愚蠢的写法
+     * @param args
+     */
     public static void main(String[] args) {
-        int x = 1234;
-        int y = 566;
-        _2_两数相加 _2_ = new _2_两数相加();
-        ListNode l1 = _2_.build(x);
-        ListNode cur = l1;
-        while (true) {
-            System.out.println(cur.val);
-            cur = cur.next;
-            if (cur == null) {
-                break;
-            }
-        }
-    }
+        BigInteger x = BigInteger.valueOf(9);
+        BigInteger y = BigInteger.valueOf(9999999991l);
 
-    private ListNode build(int x) {
-        ListNode node1 = new ListNode(x % 10);
-        int y = x;
-        int y = y / 10;
-        ListNode node2 = new ListNode(y % 10);
-        node1.next = node2;
-        y = y / 10;
-        ListNode node3 = new ListNode(y % 10);
-        node2.next = node3;
-        y = y / 10;
-        ListNode node4 = new ListNode(y % 10);
-        node3.next = node4;
-        return node1;
+        _2_两数相加 _2_ = new _2_两数相加();
+        ListNode l1 = _2_.toList(x);
+        ListNode l2 = _2_.toList(y);
+        _2_.intor(l1);
+        _2_.intor(l2);
+        ListNode l3 = _2_.addTwoNumbers(l1, l2);
+        _2_.intor(l3);
+
+
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        BigInteger s = toBigInteger(l1).add(toBigInteger(l2));
+        return toList(s);
+    }
 
-        return null;
+    private void intor(ListNode l1 ) {
+        while (true) {
+            System.out.print(l1.val + " ");
+            l1 = l1.next;
+            if (l1 == null) {
+                break;
+            }
+        }
+        System.out.println();
+    }
+
+    private BigInteger toBigInteger(ListNode node) {
+        BigInteger i = BigInteger.valueOf(1);
+        BigInteger s = BigInteger.ZERO;
+        while (true) {
+            s = (s.add(BigInteger.valueOf(node.val).multiply(i)));
+            node = node.next;
+            i = i.multiply(BigInteger.valueOf(10));
+            if (node == null) {
+                break;
+            }
+        }
+        System.out.println(s);
+        return s;
+    }
+
+    private ListNode toList(BigInteger x) {
+        ListNode node1 = new ListNode(x.remainder(BigInteger.valueOf(10)).intValue());
+        toListD(x, node1);
+        return node1;
+    }
+
+    /**
+     * 递归构造
+     * @param x
+     * @param node
+     */
+    private void toListD(BigInteger x, ListNode node) {
+        x = x.divide(BigInteger.valueOf(10));
+        if (x.compareTo(BigInteger.ZERO) > 0) {
+            ListNode node1 = new ListNode(x.remainder(BigInteger.valueOf(10)).intValue());
+            node.next = node1;
+            toListD(x, node1);
+        }
     }
 
     public static class ListNode {
