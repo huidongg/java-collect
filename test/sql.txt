@@ -1,0 +1,19 @@
+CREATE TABLE `sarcoidosis_medical_record` (
+  `medical_record_id` varchar(30) NOT NULL COMMENT 'id',
+  `order_id` varchar(30) NOT NULL COMMENT '订单id',
+  `order_notice_id` varchar(30) NOT NULL COMMENT '订单通知id',
+  `clinic_date` datetime NOT NULL COMMENT '就诊日期',
+  `chief_complaint` varchar(2048) NOT NULL DEFAULT '' COMMENT '主诉',
+  `medical_history` varchar(2048) NOT NULL DEFAULT '' COMMENT '病史',
+  `physical_check` varchar(2048) NOT NULL DEFAULT '' COMMENT '体格检查',
+  `auxiliary_check` varchar(2048) NOT NULL DEFAULT '' COMMENT '辅助检查',
+  `diagnosis` varchar(2048) NOT NULL DEFAULT '' COMMENT '诊断',
+  `disposal_opinion` varchar(2048) NOT NULL DEFAULT '' COMMENT '处置意见',
+  `diagnostic_details` varchar(2048) NOT NULL DEFAULT '' COMMENT '诊断详情',
+  `interview_record_id` varchar(30) NOT NULL DEFAULT '' COMMENT '文件记录文件id',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `is_delete` int(11) NOT NULL COMMENT '删除标记:0正常,1删除',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`medical_record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='病历表';
