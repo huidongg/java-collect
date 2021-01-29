@@ -1,6 +1,4 @@
-package cn.hd.leetcode.exmple._221;
-
-import java.util.List;
+package cn.hd.leetcode.exmple._1221;
 
 public class _5637 {
 
