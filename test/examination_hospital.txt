@@ -1,0 +1,28 @@
+detail	String	false	简介	门店简介
+tel	String	true	4001023	门店联系电话
+city_name	String	true	杭州	门店所属城市
+city_code	String	true	330100	门店城市code（国标）
+type	String	true	publish	操作类型: publish=发布，update=更新
+key_word	String	true	三甲、便捷	医院等级，三甲、二甲
+exam_notice	String	false	须知(废弃)	“须知”使用下面note_category字段
+point_x	String	true	120.147733	门店位置经度高德 坐标系
+point_y	String	true	40.22077	门店位置纬度高德 坐标系
+address	String	true	东海路2号	门店地址
+work_time	String	true	工作日08:00～18:00	工作时间
+hospital_name	String	true	北京宣武门医院	门店名称
+hospital_code	String	true	1	门店code，机构保证唯一
+routes	String	false	公交108路下车对面	交通线路，通过\r\n 进行换行
+logo	String	false	门店logo的url地址	http://images.aliyun.com/image?id=123
+online_report	Number	false	1	是否支持在线报告。0:不支持;1:支持
+social_credit_code	String	false	5466X7778	社会统一信用代码
+report_way	String	false	体检后一般在7-15个工作日出具报告，请到体检中心自取纸质报告。	线下报告获取说明（必填）
+report_way_online	String	false	5-16个工作日	线上体检报告几天出具（如果有电子报告必填）
+env_imgs_url	String	false	["http://abc.jpg","http://123.png"]	环境图片(json字符串数组)，第一张是头图；（传图前先找运营同学要图片规范，别瞎传）
+special_tags_code	String	false	特色服务标签	免费停车场,绿色VIP通道,免费早餐,3天出报告,1V1导检,接待引导,独家签约,专家会诊,当天出报告；多个逗号分隔
+notify	String	false	请大家有序排队	通知信息
+note_category	String	false	{ "1": "体检须知" , "2": "核酸须知","3":"上门检测须知" }	不同种类的预约须知；
+mode	String	false	0	经营模式 0自营模式、1平台模式
+agreement	String	false	图片地址	门店与医院协议
+business_license	String	false	图片地址	营业执照
+medical_license	String	false	图片地址	医疗经营许可
+category	String	false	1,2	类目:1=体检；2=核酸，多个类目以逗号分割

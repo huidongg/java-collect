@@ -1,0 +1,10 @@
+package_code	String	true	code123	机构套餐编码
+address	String	false	北京市朝阳区望京街道	上门检测地址
+latitude	String	true	30.1212	上门检测地址纬度
+longitude	String	true	120.123123	上门检测地址经度
+province	String	false	浙江省	省份名称（高德）
+province_code	String	false	330000	省份编码（高德adcode）
+city	String	false	杭州市	城市名称（高德）
+city_code	String	false	330100	城市编码（高德adcode）
+district	String	false	余杭区	区域名称（高德）
+district_code	String	false	330110	区域编码（高德adcode）

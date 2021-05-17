@@ -1,19 +1,15 @@
-CREATE TABLE `sarcoidosis_medical_record` (
-  `medical_record_id` varchar(30) NOT NULL COMMENT 'id',
-  `order_id` varchar(30) NOT NULL COMMENT '订单id',
-  `order_notice_id` varchar(30) NOT NULL COMMENT '订单通知id',
-  `clinic_date` datetime NOT NULL COMMENT '就诊日期',
-  `chief_complaint` varchar(2048) NOT NULL DEFAULT '' COMMENT '主诉',
-  `medical_history` varchar(2048) NOT NULL DEFAULT '' COMMENT '病史',
-  `physical_check` varchar(2048) NOT NULL DEFAULT '' COMMENT '体格检查',
-  `auxiliary_check` varchar(2048) NOT NULL DEFAULT '' COMMENT '辅助检查',
-  `diagnosis` varchar(2048) NOT NULL DEFAULT '' COMMENT '诊断',
-  `disposal_opinion` varchar(2048) NOT NULL DEFAULT '' COMMENT '处置意见',
-  `diagnostic_details` varchar(2048) NOT NULL DEFAULT '' COMMENT '诊断详情',
-  `interview_record_id` varchar(30) NOT NULL DEFAULT '' COMMENT '文件记录文件id',
+CREATE TABLE `dub_voice` (
+  `dub_voice_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '配音id',
+  `service_id` bigint(20) NOT NULL COMMENT '业务id',
+  `service_type` int(11) NOT NULL COMMENT '业务类型,10陪伴配音',
+  `dub_user_id` bigint(11) NOT NULL COMMENT '配音用户id',
+  `duration` int(11) NOT NULL COMMENT '配音时长,单位秒',
+  `style_label` varchar(32) NOT NULL DEFAULT '' COMMENT '风格标签',
+  `ip_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'ipId',
   `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
-  `is_delete` int(11) NOT NULL COMMENT '删除标记:0正常,1删除',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`medical_record_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='病历表';
+  `is_delete` int(11) NOT NULL DEFAULT '0' COMMENT '删除标记',
+  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
+  `modify_time` bigint(20) NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`dub_voice_id`),
+  KEY `idx_service_id` (`service_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邀请配音表';
