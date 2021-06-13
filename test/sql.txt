@@ -1,15 +1,14 @@
-CREATE TABLE `dub_voice` (
-  `dub_voice_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '配音id',
-  `service_id` bigint(20) NOT NULL COMMENT '业务id',
-  `service_type` int(11) NOT NULL COMMENT '业务类型,10陪伴配音',
-  `dub_user_id` bigint(11) NOT NULL COMMENT '配音用户id',
-  `duration` int(11) NOT NULL COMMENT '配音时长,单位秒',
-  `style_label` varchar(32) NOT NULL DEFAULT '' COMMENT '风格标签',
-  `ip_id` bigint(20) NOT NULL DEFAULT '0' COMMENT 'ipId',
-  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
-  `is_delete` int(11) NOT NULL DEFAULT '0' COMMENT '删除标记',
-  `create_time` bigint(20) NOT NULL COMMENT '创建时间',
-  `modify_time` bigint(20) NOT NULL COMMENT '修改时间',
-  PRIMARY KEY (`dub_voice_id`),
-  KEY `idx_service_id` (`service_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邀请配音表';
+CREATE TABLE `ios_publish_version` (
+  `ios_publish_version_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `version_name` varchar(64) NOT NULL COMMENT '版本名称',
+  `build_no` varchar(32) NOT NULL DEFAULT '' COMMENT '构建号',
+  `content` varchar(1024) NOT NULL COMMENT '发布内容',
+  `publish_time` bigint(20) NOT NULL,
+  `enable` int(11) NOT NULL DEFAULT '0' COMMENT '启动状态, 0不启用,1启动',
+  `remark` varchar(255) NOT NULL DEFAULT '',
+  `is_delete` int(11) NOT NULL DEFAULT '0' COMMENT '删除标记, 0未,1删除',
+  `create_time` bigint(20) NOT NULL,
+  `modify_time` bigint(20) NOT NULL,
+  PRIMARY KEY (`ios_publish_version_id`),
+  KEY `idx_publish_time` (`publish_time`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

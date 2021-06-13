@@ -1,25 +1,31 @@
 package cn.hd.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test2 {
     public static void main(String[] args) {
-        String user = "1,333,4444";
-        int r = user.indexOf(",");
-        System.out.println(new StringBuffer(user).insert(r + 1, "22,"));
-
-
-        int [] ar1 = {1,3,5,0, 0, 0};
-        int m = 3;
-        int [] ar2 = {2, 4, 6};
-        int n = 3;
-
-        int p1 = 0;
-        int p2 = 0;
-        int cur = 0;
-        int [] curArr = new int[m+n];
-        while (p1 < m || p2 < n) {
-            if (p1 == m) {
-                cur = ar1[p2];
-            }
-        }
+        List<Stu> list = new ArrayList<>();
+        Stu stu1 = new Stu();
+        stu1.setName("zhangsan");
+        stu1.setAge(25);
+        list.add(stu1);
+        Stu stu2 = new Stu();
+        stu2.setName("lisi");
+        stu2.setAge(34);
+        list.add(stu2);
+        System.out.println(JSON.toJSONString(list));
+        String json = JSON.toJSONString(list);
+        List<Stu> list1 = JSON.parseArray(json, Stu.class);
+        System.out.println(JSONArray.toJSONString(list1));
+    }
+    @Data
+    static class Stu {
+        private String name;
+        private Integer age;
     }
 }
